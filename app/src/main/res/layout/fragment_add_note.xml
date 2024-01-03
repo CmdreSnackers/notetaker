@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddNoteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sw.notetaker.ui.add.viewModel.AddNoteViewModelImpl" />
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".ui.fragments.AddTodoFragment">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/etTitle"
+            android:background="@drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_title"
+            android:inputType="text"
+            android:text="@={viewModel.title}" />
+
+        <EditText
+            android:id="@+id/etDesc"
+            android:background="@drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="top|start"
+            android:hint="@string/enter_desc"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:maxLines="4"
+            android:text="@={viewModel.desc}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
+
+            <View
+                android:id="@+id/vRed"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/red"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.redClick()}" />
+
+            <View
+                android:id="@+id/vGreen"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/green"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.greenClick()}" />
+
+            <View
+                android:id="@+id/vYellow"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/yellow"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.yellowClick()}" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> viewModel.addNote()}"
+            android:text="Add"
+            app:cornerRadius="16dp" />
+
+    </LinearLayout>
+
+</layout>
